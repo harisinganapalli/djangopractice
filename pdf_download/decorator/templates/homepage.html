@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if messages %}
+    {% for message in messaages %}
+    <div style ='color: red ;'>{{message}}</div>
+    {% endfor %}
+    {% endif %}
+
+    {% if request.user.is_authenticated %}
+    <h3>{{request.user.email}}</h3>
+
+
+    {{% elif request.user.is_student %}} 
+       you are a student ...
+
+    {% elif request.user.is_teacher %}
+      you are Teacher
+
+    {% elif request.user.is_principal %}
+      you are Principal   
+
+    {% else %}
+       you are not a user 
+    
+       {% endif %}
+    
+     {% endif %}
+     
+     <a href="{% url'login' %}"> Login</a>
+     <a href="{% url 'student' %}">Student Login</a>
+     <a href ="{% url 'teacher' %}"> Teacher Login</a>
+     <a href="{% url 'principal' %}"> Principal Login</a>
+
+</body>
+</html>
